@@ -24,9 +24,12 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     userSelectedDate = selectedDates[0];
-    userSelectedDate.getTime() >= Date.now()
+    userSelectedDate >= Date.now()
       ? (startTimerBtn.disabled = false)
-      : window.alert('Please choose a date in the future');
+      : iziToast.error({
+          title: 'Error',
+          message: 'Please choose a date in the future',
+        });
   },
 };
 
@@ -55,18 +58,25 @@ startTimerBtn.addEventListener('click', event => {
   startTimerBtn.disabled = true;
   inputDate.disabled = true;
   let remainOfTime = 0;
+
   const timerInterval = setInterval(() => {
-    remainOfTime = convertMs(userSelectedDate.getTime() - Date.now());
+    remainOfTime = convertMs(userSelectedDate - Date.now());
     for (let i = 0; i < allValuesContainerTimer.length; i++) {
       allValuesContainerTimer[i].textContent = String(
         Object.values(remainOfTime)[i]
       ).padStart(2, '0');
     }
 
-    if (remainOfTime <= 0) {
+    if (userSelectedDate - Date.now() <= 0) {
       clearInterval(timerInterval);
-      startTimerBtn.removeEventListener('click');
       inputDate.disabled = false;
+      for (let i = 0; i < allValuesContainerTimer.length; i++) {
+        allValuesContainerTimer[i].textContent = '00';
+      }
+      iziToast.success({
+        title: 'Done',
+        message: 'The countdown has finished!',
+      });
     }
   }, 1000);
 });
