@@ -16,3 +16,71 @@
 @import url('./badges.css');
 @import url('./back-link.css');
 @import url('./footer.css');
+
+
+
+input{
+  width: 272px;
+  height: 40px;
+  border: 1px solid rgba(46, 47, 66, 0.4);
+    border-radius: 4px;
+    padding: 8px;
+    background-color: transparent;
+    justify-content: right;
+}
+
+.timer{
+   display: flex;
+   flex-wrap: wrap;
+  width: 346px;
+    height: 72px;
+    font-family: "Montserrat", sans-serif;
+      font-weight: 400;
+      font-size: 40px;   
+      /* line-height: 48px; */
+      line-height: 120%;
+      letter-spacing: 0.04em;
+      color: #2e2f42;
+      justify-content:right;
+}
+
+.field{
+display: flex;
+  flex-direction:column;
+width: 75px;
+ 
+}
+
+.label{
+  font-size: 16px;
+  /* line-height: 24px; */
+  line-height: 150%;
+  color: #2e2f42;
+
+}
+
+
+button {
+  display: block;
+  margin: 0 auto;
+  border: none;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  border-radius: 8px;
+    padding: 8px 16px;
+    width: 75px;
+    height: 40px;
+    background: #4e75ff;
+}
+
+button:hover{
+background: #6c8cff;;
+
+}
+
+button:disabled{
+  background: #cfcfcf;
+}
