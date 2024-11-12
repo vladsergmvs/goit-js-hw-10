@@ -10,8 +10,8 @@ import 'izitoast/dist/css/iziToast.min.css';
 //////////////////////////////////////////////////////////////
 
 const startTimerBtn = document.querySelector('button[data-start]'),
-  allValuesContainerTimer = document.querySelectorAll('.timer .value'),
-  inputDate = document.querySelector('#datetime-picker');
+  allValuesContainerTimer = document.querySelectorAll('.timer .value');
+  
 
 //////////////////////////////////////////////////////////////
 let userSelectedDate;
@@ -24,9 +24,7 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     userSelectedDate = selectedDates[0];
-    userSelectedDate >= Date.now()
-      ? (startTimerBtn.disabled = false)
-      : iziToast.error({
+    userSelectedDate >= Date.now() ? (startTimerBtn.disabled = false) : iziToast.error({
           title: 'Error',
           message: 'Please choose a date in the future',
         });
@@ -57,19 +55,19 @@ function convertMs(ms) {
 startTimerBtn.addEventListener('click', event => {
   startTimerBtn.disabled = true;
   inputDate.disabled = true;
-  let remainOfTime = 0;
+  let RemainingTime = 0;
 
   const timerInterval = setInterval(() => {
-    remainOfTime = convertMs(userSelectedDate - Date.now());
+    RemainingTime = convertMs(userSelectedDate - Date.now());
     for (let i = 0; i < allValuesContainerTimer.length; i++) {
       allValuesContainerTimer[i].textContent = String(
-        Object.values(remainOfTime)[i]
+        Object.values(RemainingTime)[i]
       ).padStart(2, '0');
     }
 
     if (userSelectedDate - Date.now() <= 0) {
       clearInterval(timerInterval);
-      inputDate.disabled = false;
+      document.querySelector('#datetime-picker').disabled = false;
       for (let i = 0; i < allValuesContainerTimer.length; i++) {
         allValuesContainerTimer[i].textContent = '00';
       }
