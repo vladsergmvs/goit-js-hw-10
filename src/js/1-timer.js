@@ -10,7 +10,8 @@ import 'izitoast/dist/css/iziToast.min.css';
 //////////////////////////////////////////////////////////////
 
 const startTimerBtn = document.querySelector('button[data-start]'),
-  allValuesContainerTimer = document.querySelectorAll('.timer .value');
+      allValuesContainerTimer = document.querySelectorAll('.timer .value'),
+       inputDate = document.querySelector('#datetime-picker');
   
 
 //////////////////////////////////////////////////////////////
