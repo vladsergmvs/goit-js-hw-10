@@ -14,14 +14,15 @@ form.addEventListener('submit', createPromise);
 function createPromise(event) {
   event.preventDefault();
   const state = event.target.elements.state.value,
-    delay = event.target.elements.delay.value;
+    delay = +event.target.elements.delay.value;
+
   // Create promise
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
       if (state === 'fulfilled') {
-        resolve(`✅ Fulfilled promise in ${+delay}ms`);
+        resolve(`✅ Fulfilled promise in ${delay}ms`);
       } else {
-        reject(`❌ Rejected promise in ${+delay}ms`);
+        reject(`❌ Rejected promise in ${delay}ms`);
       }
     }, delay);
   });
